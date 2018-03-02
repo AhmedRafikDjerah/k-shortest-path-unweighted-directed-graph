@@ -2,9 +2,9 @@
 public class MyLink {
 	
 	private double weight; 
-	private int id;
+	String id;
 	
-	public MyLink(double weight, int id) {
+	public MyLink(double weight, String id) {
 		this.weight = weight;
 		this.id = id;
 		
@@ -12,6 +12,10 @@ public class MyLink {
 	
 	public String toString() {
 		return ""+this.weight;
+	}
+	
+	public double getWeight() {
+		return this.weight;
 	}
 
 }
