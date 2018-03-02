@@ -10,10 +10,7 @@ import java.util.Set;
 
 import edu.uci.ics.jung.graph.Graph;
 
-/**
- * @author Team Coddicted
- *
- */
+
 public class Dijkstra {
 
 	private Graph<Vertex, MyLink> g;
@@ -34,13 +31,7 @@ public class Dijkstra {
 		return null;
 	}
 
-	/**
-	 * Computes all shortest paths to all the vertices in the graph using the
-	 * Dijkstra's shortest path algorithm.
-	 * 
-	 * @param sourceId
-	 *            : Starting node from which to find the shortest paths.
-	 */
+
 	public void computeAllShortestPaths(Integer sourceId) {
 		Vertex source = getSourceFromId(sourceId);
 		source.sourceDistance = 0;
@@ -81,12 +72,7 @@ public class Dijkstra {
 		}
 	}
 
-	/**
-	 * @param target
-	 * @return A List of nodes in order as they would appear in a shortest path.
-	 *         (There can be multiple shortest paths present. This method
-	 *         returns just one of those paths.)
-	 */
+	
 	public List<Vertex> getShortestPathTo(Vertex target) {
 		List<Vertex> path = new ArrayList<Vertex>();
 		for (Vertex vertex = target; vertex != null; vertex = vertex
@@ -96,11 +82,7 @@ public class Dijkstra {
 		return path;
 	}
 
-	/**
-	 * @param target
-	 * @return A set of all possible shortest paths from the source to the given
-	 *         target.
-	 */
+	
 	public List<List<Vertex>> getAllShortestPathsTo(Vertex target, int k) {
 		allShortestPaths = new HashSet<List<Vertex>>();
 
@@ -118,15 +100,7 @@ public class Dijkstra {
 		
 	}
 
-	/**
-	 * Recursive method to enumerate all possible shortest paths and add each
-	 * path in the set of all possible shortest paths.
-	 * 
-	 * @param shortestPath
-	 * @param target
-	 * @return
-	 * 
-	 */
+	
 	private List<Vertex> getShortestPath(List<Vertex> shortestPath, Vertex target) {
 		
 		List<Vertex> prev = target.getPrev();
