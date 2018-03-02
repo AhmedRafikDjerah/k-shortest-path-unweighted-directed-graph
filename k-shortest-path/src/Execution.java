@@ -104,7 +104,7 @@ public class Execution {
 		vv.setPreferredSize(new Dimension(600, 600));
 		
 		DefaultModalGraphMouse<Vertex, MyLink> gm = new DefaultModalGraphMouse<Vertex, MyLink>();
-		gm.setMode(ModalGraphMouse.Mode.TRANSFORMING);
+		gm.setMode(ModalGraphMouse.Mode.PICKING);
 		vv.setGraphMouse(gm); 
 
 		
