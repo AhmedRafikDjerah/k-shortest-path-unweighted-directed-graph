@@ -61,7 +61,7 @@ public class Execution {
 				System.out.println("Path: " + path);
 
 				System.out.println("---- All Possible Paths ----");
-				Set<List<Vertex>> allShortestPaths = d.getAllShortestPathsTo(v);
+				List<List<Vertex>> allShortestPaths = d.getAllShortestPathsTo(v, 2);
 
 				for (Iterator<List<Vertex>> iter = allShortestPaths.iterator(); iter.hasNext(); i++) {
 					List<Vertex> p = (List<Vertex>) iter.next();

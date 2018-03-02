@@ -42,7 +42,6 @@ public class Dijkstra {
 	 *            : Starting node from which to find the shortest paths.
 	 */
 	public void computeAllShortestPaths(Integer sourceId) {
-
 		Vertex source = getSourceFromId(sourceId);
 		source.sourceDistance = 0;
 		PriorityQueue<Vertex> vertexQueue = new PriorityQueue<Vertex>();
@@ -102,12 +101,21 @@ public class Dijkstra {
 	 * @return A set of all possible shortest paths from the source to the given
 	 *         target.
 	 */
-	public Set<List<Vertex>> getAllShortestPathsTo(Vertex target) {
+	public List<List<Vertex>> getAllShortestPathsTo(Vertex target, int k) {
 		allShortestPaths = new HashSet<List<Vertex>>();
 
 		getShortestPath(new ArrayList<Vertex>(), target);
-
-		return allShortestPaths;
+		
+		List<List<Vertex>> converting = new ArrayList<List<Vertex>>();
+		
+		for(List<Vertex> v:allShortestPaths) {
+			converting.add(new ArrayList<Vertex> (v));
+		}
+		
+		List<List<Vertex>> sub = converting.subList(0, Math.min(converting.size(), k));
+		
+		return sub;
+		
 	}
 
 	/**
@@ -119,8 +127,8 @@ public class Dijkstra {
 	 * @return
 	 * 
 	 */
-	private List<Vertex> getShortestPath(List<Vertex> shortestPath,
-			Vertex target) {
+	private List<Vertex> getShortestPath(List<Vertex> shortestPath, Vertex target) {
+		
 		List<Vertex> prev = target.getPrev();
 		if (prev == null) {
 			shortestPath.add(target);
