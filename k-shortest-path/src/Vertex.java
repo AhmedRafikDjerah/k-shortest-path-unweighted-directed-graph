@@ -118,5 +118,15 @@ public class Vertex implements Comparable<Vertex> {
 	public int compareTo(Vertex other) {
 		return Double.compare(sourceDistance, other.sourceDistance);
 	}
+	
+	@Override
+	public boolean equals(Object that) {
+		if(this == that) return true;
+		if(!(that instanceof Vertex)) return false;
+		
+		Vertex other = (Vertex) that;
+		
+		return this.id == other.id && this.label.equals(other.label);
+	}
 
 }

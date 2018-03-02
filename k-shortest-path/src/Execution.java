@@ -1,5 +1,4 @@
 import java.awt.Dimension;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -27,18 +26,23 @@ public class Execution {
 		Vertex node2 = new Vertex(2, "node 2");
 		Vertex node3 = new Vertex(3, "node 3");
 		Vertex node4 = new Vertex(4, "node 4");
+		Vertex node5 = new Vertex(5, "node 5");
 		
 		g.addVertex(node1);
 		g.addVertex(node2);
 		g.addVertex(node3);
 		g.addVertex(node4);
+		g.addVertex(node5);
 		
 		
-		g.addEdge(new MyLink(3.0, "1-2"), node1,node2);
-		g.addEdge(new MyLink(1.0, "1-3"), node1,node3);
-		g.addEdge(new MyLink(2.0, "3-2"), node3,node2);
-		g.addEdge(new MyLink(1.0, "3-4"), node3,node4);
-		g.addEdge(new MyLink(1.0, "2-4"), node2,node4);
+		g.addEdge(new MyLink(9.0, "1-2"), node1,node2, EdgeType.UNDIRECTED);
+		g.addEdge(new MyLink(2.0, "1-3"), node1,node3, EdgeType.UNDIRECTED);
+		g.addEdge(new MyLink(1.0, "2-4"), node2,node4, EdgeType.UNDIRECTED);
+		g.addEdge(new MyLink(3.0, "3-4"), node3,node4, EdgeType.UNDIRECTED);
+		g.addEdge(new MyLink(6.0, "1-4"), node1,node4, EdgeType.UNDIRECTED);
+		g.addEdge(new MyLink(1.0, "2-5"), node2,node5, EdgeType.UNDIRECTED);
+		g.addEdge(new MyLink(1.0, "3-5"), node3,node5, EdgeType.UNDIRECTED);
+		g.addEdge(new MyLink(2.0, "4-5"), node4,node5, EdgeType.UNDIRECTED);
 		
 		Vertex source = node1;
 		d.computeAllShortestPaths(source.getId());
@@ -51,7 +55,7 @@ public class Execution {
 
 		for (Iterator<Vertex> iterator = vertices.iterator(); iterator.hasNext();) {
 			v = (Vertex) iterator.next();
-			if(v == node2) {
+			if(v == node4) {
 				System.out.println("Distance to " + v.getId() + ": " + v.sourceDistance);
 				List<Vertex> path = d.getShortestPathTo(v);
 				System.out.println("Path: " + path);
@@ -61,6 +65,10 @@ public class Execution {
 
 				for (Iterator<List<Vertex>> iter = allShortestPaths.iterator(); iter.hasNext(); i++) {
 					List<Vertex> p = (List<Vertex>) iter.next();
+					
+					if(p.get(p.size() - 1).equals(source)) {
+						p.remove(p.size() - 1);
+					}
 					
 					System.out.println("Path " + i + ": " + p + ": " + v.sourceDistance);
 					
@@ -93,7 +101,7 @@ public class Execution {
 
 		
 		vv.setPreferredSize(new Dimension(350, 350));
-		JFrame frame = new JFrame("Graph Viewer");
+		JFrame frame = new JFrame("Bla bla");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().add(vv);
 		frame.pack();
